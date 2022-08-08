@@ -54,4 +54,9 @@ public class PersonService {
 
         return person;
     }
+
+    public void delete(String id) {
+
+        logger.info("deleting one person!");
+    }
 }
