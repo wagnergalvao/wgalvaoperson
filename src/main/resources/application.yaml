@@ -1,0 +1,13 @@
+spring:
+    datasource:
+        dbcp2:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://12.0.0.6468:3306/wgalvao_person?useTimeZone=true&serverTimeZone=UTC
+            username: root
+            password: admin123
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        hibernate.ddl-auto: update
+        show-sql: false
+    autoconfigure:
+        exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

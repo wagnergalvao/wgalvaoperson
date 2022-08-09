@@ -7,15 +7,26 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.2</version>
 		<relativePath/>
-		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.wgalvao</groupId>
 	<artifactId>wgalvaoperson</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>wgalvaoperson</name>
-	<description>Demo project for Spring Boot</description>
+	<description>My Spring Boot studies</description>
+	<developers>
+		<developer>
+			<id>wgalvao</id>
+			<name>Wagner José Bitencourt Galvão</name>
+			<email>wagnerjbgalvao@gmail.com</email>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/wagnergalvao/wgalvaoperson</url>
+	</scm>
 	<properties>
 		<java.version>8</java.version>
+		<mysql.version>8.0.29</mysql.version>
+		<jaxb-api.version>2.3.1</jaxb-api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,8 +35,17 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,9 +54,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.github.javafaker</groupId>
-			<artifactId>javafaker</artifactId>
-			<version>1.0.2</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -47,6 +67,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
