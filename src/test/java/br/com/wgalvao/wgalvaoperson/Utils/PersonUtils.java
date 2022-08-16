@@ -12,7 +12,7 @@ public class PersonUtils {
 
     public static Person createFakePerson() {
         Person fakePerson = new Person();
-        fakePerson.setId(faker.random().nextLong());
+        fakePerson.setId(faker.random().nextInt(1, 100000).longValue());
         fakePerson.setFirstName(faker.name().firstName());
         fakePerson.setLastName(faker.name().lastName());
         fakePerson.setAdress(faker.address()

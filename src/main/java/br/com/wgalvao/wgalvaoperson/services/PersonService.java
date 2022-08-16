@@ -6,56 +6,67 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.wgalvao.wgalvaoperson.data.vo.v1.PersonVO;
 import br.com.wgalvao.wgalvaoperson.exceptions.ResourceNotFoundException;
+import br.com.wgalvao.wgalvaoperson.mapper.PersonMapper;
 import br.com.wgalvao.wgalvaoperson.model.Person;
 import br.com.wgalvao.wgalvaoperson.repositories.PersonRepository;
 
 @Service
 public class PersonService {
 
-    // private final AtomicLong counter = new AtomicLong();
     private Logger logger = Logger.getLogger(PersonService.class.getName());
 
     @Autowired
     PersonRepository personRepository;
 
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
 
         logger.info("finding all people!");
 
-        return personRepository.findAll();
+        return PersonMapper.parseListObjects(
+                personRepository.findAll(),
+                PersonVO.class);
     }
 
-    public Person findById(Long id) {
+    public PersonVO findById(Long id) {
 
         logger.info("finding one person!");
 
-        // Person person = createFakePerson();
-        // person.setId(counter.incrementAndGet());
-
-        return personRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "no person found with ID " + id));
+        return PersonMapper.parseObject(
+                recoverPerson(id),
+                PersonVO.class);
     }
 
-    public Person create(Person person) {
+    public PersonVO create(PersonVO personVO) {
 
         logger.info("creating one person!");
 
-        return personRepository.save(person);
+        Person person = PersonMapper.parseObject(personVO, Person.class);
+        PersonVO response = PersonMapper.parseObject(
+                personRepository.save(person),
+                PersonVO.class);
+
+        return response;
     }
 
-    public Person update(Person person) {
+    public PersonVO update(PersonVO personVO) {
 
         logger.info("updating one person!");
 
+        Person person = PersonMapper.parseObject(personVO, Person.class);
         Person personEntity = recoverPerson(person.getId());
-        personEntity.setFirstName(person.getFirstName());
-        personEntity.setLastName(person.getLastName());
-        personEntity.setAdress(person.getAdress());
-        personEntity.setGender(person.getGender());
 
-        return personRepository.save(personEntity);
+        personEntity.setFirstName(personVO.getFirstName());
+        personEntity.setLastName(personVO.getLastName());
+        personEntity.setAdress(personVO.getAdress());
+        personEntity.setGender(personVO.getGender());
+
+        PersonVO response = PersonMapper.parseObject(
+                personRepository.save(personEntity),
+                PersonVO.class);
+
+        return response;
     }
 
     public void delete(Long id) {
@@ -69,8 +80,10 @@ public class PersonService {
 
     protected Person recoverPerson(Long id) {
 
-        return personRepository.findById(id)
+        Person response = personRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "no person found with ID " + id));
+
+        return response;
     }
 }
