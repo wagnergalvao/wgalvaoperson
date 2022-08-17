@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.wgalvao.wgalvaoperson.data.vo.v1.PersonVO;
+import br.com.wgalvao.wgalvaoperson.data.vo.v2.PersonVOV2;
 import br.com.wgalvao.wgalvaoperson.exceptions.ResourceNotFoundException;
 import br.com.wgalvao.wgalvaoperson.mapper.PersonMapper;
+import br.com.wgalvao.wgalvaoperson.mapper.v2.PersonV2Mapper;
 import br.com.wgalvao.wgalvaoperson.model.Person;
 import br.com.wgalvao.wgalvaoperson.repositories.PersonRepository;
 
@@ -19,6 +21,9 @@ public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    PersonV2Mapper personV2Mapper;
 
     public List<PersonVO> findAll() {
 
@@ -46,6 +51,16 @@ public class PersonService {
         PersonVO response = PersonMapper.parseObject(
                 personRepository.save(person),
                 PersonVO.class);
+
+        return response;
+    }
+
+    public PersonVOV2 createV2(PersonVOV2 personVOV2) {
+
+        logger.info("creating one person with V2!");
+
+        Person person = personV2Mapper.convertVOToEntity(personVOV2);
+        PersonVOV2 response = personV2Mapper.convertEntityToVO(personRepository.save(person));
 
         return response;
     }
