@@ -8,7 +8,7 @@ import br.com.wgalvao.wgalvaoperson.data.vo.v2.PersonVOV2;
 import br.com.wgalvao.wgalvaoperson.model.Person;
 
 @Service
-public class PersonV2Mapper {
+public class PersonMapperV2 {
 
     public PersonVOV2 convertEntityToVO(Person person) {
 
@@ -16,7 +16,7 @@ public class PersonV2Mapper {
         personVOV2.setId(person.getId());
         personVOV2.setFirstName(person.getFirstName());
         personVOV2.setLastName(person.getLastName());
-        personVOV2.setAdress(person.getAdress());
+        personVOV2.setaddress(person.getaddress());
         personVOV2.setGender(person.getGender());
         personVOV2.setBirthDay(new Date());
 
@@ -29,7 +29,7 @@ public class PersonV2Mapper {
         person.setId(personVOV2.getId());
         person.setFirstName(personVOV2.getFirstName());
         person.setLastName(personVOV2.getLastName());
-        person.setAdress(personVOV2.getAdress());
+        person.setaddress(personVOV2.getaddress());
         person.setGender(personVOV2.getGender());
 
         return person;

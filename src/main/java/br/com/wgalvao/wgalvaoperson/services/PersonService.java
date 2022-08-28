@@ -10,7 +10,7 @@ import br.com.wgalvao.wgalvaoperson.data.vo.v1.PersonVO;
 import br.com.wgalvao.wgalvaoperson.data.vo.v2.PersonVOV2;
 import br.com.wgalvao.wgalvaoperson.exceptions.ResourceNotFoundException;
 import br.com.wgalvao.wgalvaoperson.mapper.PersonMapper;
-import br.com.wgalvao.wgalvaoperson.mapper.v2.PersonV2Mapper;
+import br.com.wgalvao.wgalvaoperson.mapper.v2.PersonMapperV2;
 import br.com.wgalvao.wgalvaoperson.model.Person;
 import br.com.wgalvao.wgalvaoperson.repositories.PersonRepository;
 
@@ -23,7 +23,7 @@ public class PersonService {
     PersonRepository personRepository;
 
     @Autowired
-    PersonV2Mapper personV2Mapper;
+    PersonMapperV2 personMapperV2;
 
     public List<PersonVO> findAll() {
 
@@ -59,8 +59,8 @@ public class PersonService {
 
         logger.info("creating one person with V2!");
 
-        Person person = personV2Mapper.convertVOToEntity(personVOV2);
-        PersonVOV2 response = personV2Mapper.convertEntityToVO(personRepository.save(person));
+        Person person = personMapperV2.convertVOToEntity(personVOV2);
+        PersonVOV2 response = personMapperV2.convertEntityToVO(personRepository.save(person));
 
         return response;
     }
@@ -74,7 +74,7 @@ public class PersonService {
 
         personEntity.setFirstName(personVO.getFirstName());
         personEntity.setLastName(personVO.getLastName());
-        personEntity.setAdress(personVO.getAdress());
+        personEntity.setaddress(personVO.getaddress());
         personEntity.setGender(personVO.getGender());
 
         PersonVO response = PersonMapper.parseObject(

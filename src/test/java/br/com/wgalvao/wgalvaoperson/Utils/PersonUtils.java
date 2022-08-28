@@ -15,7 +15,7 @@ public class PersonUtils {
         fakePerson.setId(faker.random().nextInt(1, 100000).longValue());
         fakePerson.setFirstName(faker.name().firstName());
         fakePerson.setLastName(faker.name().lastName());
-        fakePerson.setAdress(faker.address()
+        fakePerson.setaddress(faker.address()
                 .streetName()
                 .concat(String.format(", %s", faker.address().streetAddressNumber()))
                 .concat(String.format(" - %s", faker.address().secondaryAddress()))

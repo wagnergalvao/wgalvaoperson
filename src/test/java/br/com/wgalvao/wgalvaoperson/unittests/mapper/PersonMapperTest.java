@@ -39,7 +39,7 @@ public class PersonMapperTest {
         assertEquals(person.getId(), response.getId());
         assertEquals(person.getFirstName(), response.getFirstName());
         assertEquals(person.getLastName(), response.getLastName());
-        assertEquals(person.getAdress(), response.getAdress());
+        assertEquals(person.getaddress(), response.getaddress());
         assertEquals(person.getGender(), response.getGender());
 
     }
@@ -55,7 +55,7 @@ public class PersonMapperTest {
             assertEquals(itemPerson.getId(), itemResponse.getId());
             assertEquals(itemPerson.getFirstName(), itemResponse.getFirstName());
             assertEquals(itemPerson.getLastName(), itemResponse.getLastName());
-            assertEquals(itemPerson.getAdress(), itemResponse.getAdress());
+            assertEquals(itemPerson.getaddress(), itemResponse.getaddress());
             assertEquals(itemPerson.getGender(), itemResponse.getGender());
         }
 
@@ -67,7 +67,7 @@ public class PersonMapperTest {
         assertEquals(person.getId(), response.getId());
         assertEquals(person.getFirstName(), response.getFirstName());
         assertEquals(person.getLastName(), response.getLastName());
-        assertEquals(person.getAdress(), response.getAdress());
+        assertEquals(person.getaddress(), response.getaddress());
         assertEquals(person.getGender(), response.getGender());
 
     }
@@ -84,7 +84,7 @@ public class PersonMapperTest {
             assertEquals(itemPerson.getId(), itemResponse.getId());
             assertEquals(itemPerson.getFirstName(), itemResponse.getFirstName());
             assertEquals(itemPerson.getLastName(), itemResponse.getLastName());
-            assertEquals(itemPerson.getAdress(), itemResponse.getAdress());
+            assertEquals(itemPerson.getaddress(), itemResponse.getaddress());
             assertEquals(itemPerson.getGender(), itemResponse.getGender());
         }
     }

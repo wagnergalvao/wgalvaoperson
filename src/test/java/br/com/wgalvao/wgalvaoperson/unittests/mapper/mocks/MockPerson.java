@@ -29,7 +29,7 @@ public class MockPerson {
         personVO.setId(person.getId());
         personVO.setFirstName(person.getFirstName());
         personVO.setLastName(person.getLastName());
-        personVO.setAdress(person.getAdress());
+        personVO.setaddress(person.getaddress());
         personVO.setGender(person.getGender());
         return personVO;
     }
