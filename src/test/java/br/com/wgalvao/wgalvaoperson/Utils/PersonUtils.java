@@ -1,4 +1,4 @@
-package br.com.wgalvao.wgalvaoperson.Utils;
+package br.com.wgalvao.wgalvaoperson.utils;
 
 import java.util.Locale;
 

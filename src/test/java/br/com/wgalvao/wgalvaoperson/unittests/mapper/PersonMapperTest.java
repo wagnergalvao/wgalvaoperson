@@ -1,6 +1,6 @@
 package br.com.wgalvao.wgalvaoperson.unittests.mapper;
 
-import static br.com.wgalvao.wgalvaoperson.Utils.PersonUtils.createFakePerson;
+import static br.com.wgalvao.wgalvaoperson.utils.PersonUtils.createFakePerson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
