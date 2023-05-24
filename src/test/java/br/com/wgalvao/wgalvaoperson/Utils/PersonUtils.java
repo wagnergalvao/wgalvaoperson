@@ -1,4 +1,4 @@
-package br.com.wgalvao.wgalvaoperson.utils;
+package br.com.wgalvao.wgalvaoperson.Utils;
 
 import java.util.Locale;
 
@@ -15,7 +15,7 @@ public class PersonUtils {
         fakePerson.setId(faker.random().nextInt(1, 100000).longValue());
         fakePerson.setFirstName(faker.name().firstName());
         fakePerson.setLastName(faker.name().lastName());
-        fakePerson.setaddress(faker.address()
+        fakePerson.setAddress(faker.address()
                 .streetName()
                 .concat(String.format(", %s", faker.address().streetAddressNumber()))
                 .concat(String.format(" - %s", faker.address().secondaryAddress()))

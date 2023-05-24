@@ -26,10 +26,10 @@ public class MockPerson {
 
     public PersonVO mockVO(Person person) {
         PersonVO personVO = new PersonVO();
-        personVO.setId(person.getId());
+        personVO.setKey(person.getId());
         personVO.setFirstName(person.getFirstName());
         personVO.setLastName(person.getLastName());
-        personVO.setaddress(person.getaddress());
+        personVO.setAddress(person.getAddress());
         personVO.setGender(person.getGender());
         return personVO;
     }

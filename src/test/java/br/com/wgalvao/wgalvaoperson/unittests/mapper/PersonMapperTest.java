@@ -1,6 +1,6 @@
 package br.com.wgalvao.wgalvaoperson.unittests.mapper;
 
-import static br.com.wgalvao.wgalvaoperson.utils.PersonUtils.createFakePerson;
+import static br.com.wgalvao.wgalvaoperson.Utils.PersonUtils.createFakePerson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -36,10 +36,10 @@ public class PersonMapperTest {
     @Test
     public void parseEntityToVOTest() {
         PersonVO response = PersonMapper.parseObject(mockPerson.mockEntity(person), PersonVO.class);
-        assertEquals(person.getId(), response.getId());
+        assertEquals(person.getId(), response.getKey());
         assertEquals(person.getFirstName(), response.getFirstName());
         assertEquals(person.getLastName(), response.getLastName());
-        assertEquals(person.getaddress(), response.getaddress());
+        assertEquals(person.getAddress(), response.getAddress());
         assertEquals(person.getGender(), response.getGender());
 
     }
@@ -52,10 +52,10 @@ public class PersonMapperTest {
 
             PersonVO itemResponse = responses.get(i);
             Person itemPerson = persons.get(i);
-            assertEquals(itemPerson.getId(), itemResponse.getId());
+            assertEquals(itemPerson.getId(), itemResponse.getKey());
             assertEquals(itemPerson.getFirstName(), itemResponse.getFirstName());
             assertEquals(itemPerson.getLastName(), itemResponse.getLastName());
-            assertEquals(itemPerson.getaddress(), itemResponse.getaddress());
+            assertEquals(itemPerson.getAddress(), itemResponse.getAddress());
             assertEquals(itemPerson.getGender(), itemResponse.getGender());
         }
 
@@ -67,7 +67,7 @@ public class PersonMapperTest {
         assertEquals(person.getId(), response.getId());
         assertEquals(person.getFirstName(), response.getFirstName());
         assertEquals(person.getLastName(), response.getLastName());
-        assertEquals(person.getaddress(), response.getaddress());
+        assertEquals(person.getAddress(), response.getAddress());
         assertEquals(person.getGender(), response.getGender());
 
     }
@@ -81,10 +81,10 @@ public class PersonMapperTest {
 
             Person itemResponse = responses.get(i);
             PersonVO itemPerson = personVOs.get(i);
-            assertEquals(itemPerson.getId(), itemResponse.getId());
+            assertEquals(itemPerson.getKey(), itemResponse.getId());
             assertEquals(itemPerson.getFirstName(), itemResponse.getFirstName());
             assertEquals(itemPerson.getLastName(), itemResponse.getLastName());
-            assertEquals(itemPerson.getaddress(), itemResponse.getaddress());
+            assertEquals(itemPerson.getAddress(), itemResponse.getAddress());
             assertEquals(itemPerson.getGender(), itemResponse.getGender());
         }
     }

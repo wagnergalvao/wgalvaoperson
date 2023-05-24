@@ -1,11 +1,15 @@
 package br.com.wgalvao.wgalvaoperson.services;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.wgalvao.wgalvaoperson.controller.PersonController;
 import br.com.wgalvao.wgalvaoperson.data.vo.v1.PersonVO;
 import br.com.wgalvao.wgalvaoperson.data.vo.v2.PersonVOV2;
 import br.com.wgalvao.wgalvaoperson.exceptions.ResourceNotFoundException;
@@ -29,18 +33,23 @@ public class PersonService {
 
         logger.info("finding all people!");
 
-        return PersonMapper.parseListObjects(
+        List<PersonVO> response = PersonMapper.parseListObjects(
                 personRepository.findAll(),
                 PersonVO.class);
+        response
+        .stream()
+        .forEach(item -> item.add(linkTo(methodOn(PersonController.class).findById(item.getKey())).withSelfRel()));
+        return response;
     }
 
     public PersonVO findById(Long id) {
 
         logger.info("finding one person!");
 
-        return PersonMapper.parseObject(
+        PersonVO response = PersonMapper.parseObject(
                 recoverPerson(id),
                 PersonVO.class);
+        return response.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
     }
 
     public PersonVO create(PersonVO personVO) {
@@ -52,7 +61,7 @@ public class PersonService {
                 personRepository.save(person),
                 PersonVO.class);
 
-        return response;
+        return response.add(linkTo(methodOn(PersonController.class).findById(response.getKey())).withSelfRel());
     }
 
     public PersonVOV2 createV2(PersonVOV2 personVOV2) {
@@ -62,7 +71,7 @@ public class PersonService {
         Person person = personMapperV2.convertVOToEntity(personVOV2);
         PersonVOV2 response = personMapperV2.convertEntityToVO(personRepository.save(person));
 
-        return response;
+        return response.add(linkTo(methodOn(PersonController.class).findById(response.getKey())).withSelfRel());
     }
 
     public PersonVO update(PersonVO personVO) {
@@ -74,14 +83,14 @@ public class PersonService {
 
         personEntity.setFirstName(personVO.getFirstName());
         personEntity.setLastName(personVO.getLastName());
-        personEntity.setaddress(personVO.getaddress());
+        personEntity.setAddress(personVO.getAddress());
         personEntity.setGender(personVO.getGender());
 
         PersonVO response = PersonMapper.parseObject(
                 personRepository.save(personEntity),
                 PersonVO.class);
 
-        return response;
+        return response.add(linkTo(methodOn(PersonController.class).findById(response.getKey())).withSelfRel());
     }
 
     public void delete(Long id) {

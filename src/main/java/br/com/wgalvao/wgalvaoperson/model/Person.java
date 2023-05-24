@@ -58,11 +58,11 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getaddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setaddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
